@@ -36,6 +36,9 @@ func (t Training) distance() float64 {
 func (t Training) meanSpeed() float64 {
 	// вставьте ваш код ниже
 	arc := t.distance() / t.Duration.Hours()
+	if t.Duration == 0 {
+		return 0
+	}
 	return arc
 }
 
@@ -169,7 +172,12 @@ type Swimming struct {
 // Это переопределенный метод Calories() из Training.
 func (s Swimming) meanSpeed() float64 {
 	// вставьте ваш код ниже
-	return float64(s.LengthPool*s.CountPool) / MInKm / s.Duration.Hours()
+	arc := float64(s.LengthPool*s.CountPool) / MInKm / s.Duration.Hours()
+	if s.Duration == 0 {
+		return 0
+	}
+
+	return arc
 }
 
 // Calories возвращает количество калорий, потраченных при плавании.
